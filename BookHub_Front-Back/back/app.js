@@ -15,8 +15,9 @@ app.use(cookieParser());
 
 // CORS configuration
 const corsOptions = {
-  origin: '*',  
-  credentials: true, 
+  origin: true,  
+  credentials: true,
+  exposedHeaders: ["set-cookie"], 
 };
 app.use(cors(corsOptions));  
 // Connect to MongoDB
