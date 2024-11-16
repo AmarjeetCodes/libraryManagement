@@ -19,7 +19,9 @@ const CustomNavbar = ({ isLoggedIn, setIsLoggedIn }) => {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:5000/api/auth/logout', { withCredentials: true });
+      const api_route =  process.env.REACT_APP_BACKEND_URL
+        // console.log(api_route)
+      await axios.get(api_route + '/api/auth/logout', { withCredentials: true });
       setIsLoggedIn(false);
       navigate('/');
     } catch (error) {

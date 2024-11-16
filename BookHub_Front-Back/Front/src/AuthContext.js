@@ -12,7 +12,8 @@ export const AuthProvider = ({ children }) => {
   const checkAuthStatus = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/check_authenticateToken', {}, {
+      const api_route = process.env.REACT_APP_BACKEND_URL
+      const response = await axios.post(api_route + '/api/auth/check_authenticateToken', {}, {
         withCredentials: true
       });
       if (response.status === 200) {

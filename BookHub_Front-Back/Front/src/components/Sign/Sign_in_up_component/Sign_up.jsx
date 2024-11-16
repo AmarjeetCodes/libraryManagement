@@ -21,7 +21,8 @@ const SignUpForm = ({onSignUpSuccess}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/signup', formData,{ withCredentials: true });
+      const api_route =  process.env.REACT_APP_BACKEND_URL
+      const response = await axios.post(api_route + '/api/auth/signup', formData,{ withCredentials: true });
       setMessage(response.data.message);
       onSignUpSuccess();
       setFormData({

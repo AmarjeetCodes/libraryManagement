@@ -12,7 +12,8 @@ function SummaryCards() {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/admin//summary', { withCredentials: true });
+        const api_route =  process.env.REACT_APP_BACKEND_URL
+        const response = await axios.get(api_route + '/api/admin//summary', { withCredentials: true });
         setSummary({
           totalBooks: response.data.totalBooks,
           totalUsers: response.data.totalUsers,

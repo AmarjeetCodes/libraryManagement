@@ -56,7 +56,8 @@ const AddBook = () => {
         category: category,
         pdfUrl: bookPdf
       };
-      const response = await fetch(`http://localhost:5000/api/addbook`, {
+      const api_route =  process.env.REACT_APP_BACKEND_URL
+      const response = await fetch(api_route +`/api/addbook`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

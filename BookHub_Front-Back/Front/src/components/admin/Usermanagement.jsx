@@ -9,7 +9,8 @@ const Usermanagement = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/admin//users', { withCredentials: true });
+      const api_route =  process.env.REACT_APP_BACKEND_URL
+      const response = await axios.get(api_route + '/api/admin//users', { withCredentials: true });
       setUsers(response.data);
     } catch (err) {
       setError('Failed to fetch users. Please try again.');
@@ -25,7 +26,8 @@ const Usermanagement = () => {
   const handleDelete = async (userId) => {
     try {
       if (window.confirm('Are you sure you want to delete this user?')) {
-        await axios.delete(`http://localhost:5000/api/admin/users/${userId}`, { withCredentials: true });
+        const api_route =  process.env.REACT_APP_BACKEND_URL
+        await axios.delete(api_route + `/api/admin/users/${userId}`, { withCredentials: true });
         fetchUsers();
       }
     } catch (err) {

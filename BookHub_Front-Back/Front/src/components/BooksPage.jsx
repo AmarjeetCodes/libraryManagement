@@ -10,7 +10,9 @@ const BooksPage = () => {
   useEffect(() => {
     const fetchAllBooks = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/books');
+        const api_route =  process.env.REACT_APP_BACKEND_URL
+        // console.log(api_route) 
+        const response = await fetch(api_route + '/api/books');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

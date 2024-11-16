@@ -21,7 +21,8 @@ const Profile = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const profileResponse = await axios.get('http://localhost:5000/api/auth/profile', {
+                const api_route =  process.env.REACT_APP_BACKEND_URL
+                const profileResponse = await axios.get(api_route + '/api/auth/profile', {
                     withCredentials: true
                 });
                 setProfileData(profileResponse.data);
@@ -32,8 +33,8 @@ const Profile = () => {
                     country: profileResponse.data.country,
                     profileImage: profileResponse.data.profileImage || ''
                 });
-
-                const booksResponse = await axios.get('http://localhost:5000/api/user-books', {
+                // const api_route =  process.env.REACT_APP_BACKEND_URL
+                const booksResponse = await axios.get(api_route + '/api/user-books', {
                     withCredentials: true
                 });
                 setUserBooks(booksResponse.data);
@@ -55,7 +56,8 @@ const Profile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put('http://localhost:5000/api/auth/profile', formData, {
+            const api_route =  process.env.REACT_APP_BACKEND_URL
+            const response = await axios.put(api_route + '/api/auth/profile', formData, {
                 withCredentials: true
             });
             setProfileData(response.data);
@@ -86,7 +88,8 @@ const Profile = () => {
 
     const handleDeleteConfirm = async () => {
         try {
-            await axios.delete(`http://localhost:5000/api/books/${bookToDelete._id}`, {
+            const api_route =  process.env.REACT_APP_BACKEND_URL
+            await axios.delete(api_route + `/api/books/${bookToDelete._id}`, {
                 withCredentials: true
             });
             setUserBooks(userBooks.filter(book => book._id !== bookToDelete._id));
