@@ -65,7 +65,7 @@ router.post('/signin', async (req, res) => {
             { expiresIn: '1w' }
         );
 
-        res.cookie('token', token, { httpOnly: true, sameSite: "none", secure: false });
+        res.cookie('token', token, { httpOnly: true, sameSite: "none", secure: true });
 
         res.status(200).json({
             message: `${user.role === 'admin' ? 'Admin' : 'User'} signed in successfully`,
